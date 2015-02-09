@@ -1,5 +1,5 @@
 import java.lang.*;
-public class Recursion implements hw1{
+public class Recursion{
 
     public String name(){
 	return "Chio,Erica";
