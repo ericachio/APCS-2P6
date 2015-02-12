@@ -29,9 +29,9 @@ public class KnightsTour{
     public String toString(){
 	String ans = "\n";
 	//build your knights tour here...
-	for (int i = 0; i < size; i ++){
-	    for (int j = 0; j < size; j++){
-		ans += 0;
+	for (int i = 0; i < board.length; i ++){
+	    for (int j = 0; j < board[0].length; j++){
+		board[i][j] = -1;
 	    }
 	}
 	return hide + go(0,0) + ans + "\n" + show;
@@ -48,25 +48,42 @@ public class KnightsTour{
     public void clearTerminal(){
 	System.out.println(clear());
     }
-    
+
+
     public void solve(){
 	solve(0,0);
     }
 
     public void solve(int startx, int starty){
-	
+	board[startx][starty] = 0;
+	return solve(startx, starty, 1);	
     }
-    
     
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
 	wait(20);
-
-	if (solve(x, y, currentMoveNumer)){
-	    return true;
+	
+	if (x >= board[0].length || y >= board.length){
+	    return false;
+	}
+	
+	if (board[x][y] == -1){
+	    board[x][y] = currentMoveNumber;
+	    
+	    if (solve(x + 1, y + 2, currentMoveNumber + 1) ||
+		solve(x - 1, y + 2, currentMoveNumber + 1) ||
+		solve(x + 2, y + 1, currentMoveNumber + 1) ||
+		solve(x + 2, y - 1, currentMoveNumber + 1) ||
+		solve(x - 1, y - 2, currentMoveNumber + 1) ||
+		solve(x + 1, y - 2, currentMoveNumber + 1) ||
+		solve(x - 2, y - 1, currentMoveNumber + 1) ||
+		solve(x - 2, y + 1, currentMoveNumber + 1)){
+		return true;
+	    }
 	}
 	
 	return false;
+	
     }
     
     
