@@ -11,7 +11,10 @@ public class KnightsTour{
 
     //instance variable
     private int[][]board;
-    
+
+    public String name(){
+	return "Chio.Erica";
+    }
     
     //terminal specific character to move the cursor
     private String go(int x,int y){
@@ -36,6 +39,7 @@ public class KnightsTour{
 	    ans += "\n";
 	}
 	return hide + go(0,0) + ans + "\n" + show;
+	//return ans;
     }
     
     public KnightsTour(int size){
@@ -61,7 +65,7 @@ public class KnightsTour{
     }
     
     public boolean solve(int x,int y,int currentMoveNumber){
-	clearTerminal();
+	//clearTerminal();
 	//System.out.println(this);
 	//wait(20);
 	
@@ -70,8 +74,9 @@ public class KnightsTour{
 	    return false;
 	}
 
-	if (currentMoveNumber == (board.length * board.length)){
+	if (currentMoveNumber == (board.length * board.length) + 1){
 	    board[x][y] = currentMoveNumber;
+	    System.out.println(this);
 	    return true;
 	}
 	
@@ -93,10 +98,5 @@ public class KnightsTour{
 	
 	
     }
-
-    public static void main(String[]args){
-	
-    }
-    
     
 }
