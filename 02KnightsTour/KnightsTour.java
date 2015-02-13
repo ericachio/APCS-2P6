@@ -8,7 +8,7 @@ public class KnightsTour{
     final static String clear =  "\033[2J";
     final static String hide =  "\033[?25l";
     final static String show =  "\033[?25h";
-
+    
     //instance variable
     private int[][]board;
 
@@ -63,6 +63,8 @@ public class KnightsTour{
 	board[startx][starty] = 0;
 	return solve(startx, starty, 1);	
     }
+
+    //must get rid of print(this)
     
     public boolean solve(int x,int y,int currentMoveNumber){
 	//clearTerminal();
