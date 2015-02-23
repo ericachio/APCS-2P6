@@ -13,7 +13,7 @@ public class Driver{
 	f.solve();
 				
     }
-    */
+    
     //KnightsTour
     public static void main(String[] args){
 	KnightsTour a;
@@ -25,6 +25,13 @@ public class Driver{
 	//a.clearTerminal();
 	a.solve();
 					    
+    }
+    */
+    public static void main(String[]args){
+	NQueens b;
+	b = new NQueens(8);
+	b.clearTerminal();
+	b.solve();
     }
     
 
