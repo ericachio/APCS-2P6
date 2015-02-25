@@ -29,7 +29,7 @@ public class Driver{
     */
     public static void main(String[]args){
 	NQueens b;
-	b = new NQueens(8);
+	b = new NQueens(4);
 	b.clearTerminal();
 	b.solve();
     }
