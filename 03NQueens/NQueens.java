@@ -55,8 +55,36 @@ public class NQueens{
     }
 
 
-    public void solve(){
-	solve(0);
+    public boolean solve(){
+	return solve(0);
+    }
+
+    public boolean solve(int r, int c){
+	int i,j;
+	for (i = 0; i < c; i++){
+	    if (board[r][i] == "Q"){
+		return false;
+	    }
+	}
+	for (i = r, j = c; i >= 0 && j >= 0; i--, j--){
+	    if (board[i][j] == "Q"){
+	      return false;
+	    }
+	}
+	for (i = r, j = c; j >= 0 && i < board.length; i++, j--){
+	    if (board[i][j] == "Q"){
+		return false;
+	    }
+	}
+	for (i = 0; i < r; i++){
+	    if (board[i][c] == "Q"){
+		return false;
+	    }
+	}
+	if (r >= board.length || c >= board.length){
+	    return false;
+	}
+	return true;
     }
     
     public boolean solve(int x){
@@ -67,19 +95,21 @@ public class NQueens{
 	if (x >= board[0].length || x < 0 ){
 	    return false;
 	}
-	for (int row = 0; row < board[row].length; row++){
-	    if (board[x][row] == null){
-		board[x][row] = "Q";
-		if (solve(x + 1)){
-		    return true;
-		} 
-		if (x == board[row].length - 1){
-		    board[x][row] = "Q";
+	for (int col = 0; col < board.length; col++){
+	    if (board[x][col] == null){
+		if (x == board[col].length - 1){
+		    board[x][col] = "Q";
 		    System.out.println(this);
 		    return true;
 		}
-		
-		board[x][row] = null;
+		if (solve(x, col)){
+		    board[x][col] = "Q";
+		    if (solve(x + 1)){
+			return true;
+		    }else{
+			board[x][col] = null;
+		    }
+		}	
 	    }
 	}
 	return false;

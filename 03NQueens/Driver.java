@@ -32,6 +32,7 @@ public class Driver{
 	b = new NQueens(4);
 	b.clearTerminal();
 	b.solve();
+	//System.out.println(b);
     }
     
 
