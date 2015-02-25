@@ -55,13 +55,12 @@ public class KnightsTour{
     }
 
 
-    public void solve(){
-	solve(0,0);
+    public boolean solve(){
+	return solve(0,0,1);
     }
 
     public boolean solve(int startx, int starty){
-	board[startx][starty] = 0;
-	return solve(startx, starty, 1);	
+	return solve(startx - 1, starty - 1, 1);	
     }
 
     //must get rid of print(this)
@@ -75,12 +74,6 @@ public class KnightsTour{
 	    x < 0 || y < 0){
 	    return false;
 	}
-
-	if (currentMoveNumber == (board.length * board.length) + 1){
-	    board[x][y] = currentMoveNumber;
-	    //System.out.println(this);
-	    return true;
-	}
 	
 	if (board[x][y] == 0){
 	    board[x][y] = currentMoveNumber;
@@ -92,6 +85,11 @@ public class KnightsTour{
 		solve(x + 1, y - 2, currentMoveNumber + 1) ||
 		solve(x - 2, y - 1, currentMoveNumber + 1) ||
 		solve(x - 2, y + 1, currentMoveNumber + 1)){
+		return true;
+	    }
+	    if (currentMoveNumber == (board.length * board.length)){
+		board[x][y] = currentMoveNumber;
+		//System.out.println(this);
 		return true;
 	    }
 	    board[x][y] = 0;

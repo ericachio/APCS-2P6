@@ -15,6 +15,7 @@ public class Driver{
     }
     */
     //KnightsTour
+    /*
     public static void main(String[] args){
 	KnightsTour a;
 	if (args.length < 1){
@@ -27,5 +28,26 @@ public class Driver{
 					    
     }
     
-
+    public static void main(String[]arrr){
+	KnightsTour t = new KnightsTour(5);
+	    System.out.println(t.name());
+	    System.out.println("Knights Tour:");
+    }
+    
+    public class KDriver2{
+	
+    public static void main(String[]arrr){
+	KnightsTour t = new KnightsTour(5);
+	t.solve();
+	System.out.println(t);
+    }
+    }
+    */
+    public static void main(String[]arrr){
+	KnightsTour t = new KnightsTour(5);
+	t.solve(3,3);
+	System.out.println(t);
+    }
 }
+    
+
