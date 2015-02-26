@@ -29,10 +29,10 @@ public class Driver{
     */
     public static void main(String[]args){
 	NQueens b;
-	b = new NQueens(4);
+	b = new NQueens(5);
 	b.clearTerminal();
 	b.solve();
-	//System.out.println(b);
+	System.out.println(b);
     }
     
 

@@ -88,28 +88,29 @@ public class NQueens{
     }
     
     public boolean solve(int x){
-	clearTerminal();
-	System.out.println(this);
-	wait(20);
+	//clearTerminal();
+	//System.out.println(this);
+	//wait(20);
 	
 	if (x >= board[0].length || x < 0 ){
 	    return false;
 	}
+
 	for (int col = 0; col < board.length; col++){
 	    if (board[x][col] == null){
-		if (x == board[col].length - 1){
-		    board[x][col] = "Q";
-		    System.out.println(this);
-		    return true;
-		}
 		if (solve(x, col)){
 		    board[x][col] = "Q";
-		    if (solve(x + 1)){
+		    //System.out.println(x);
+		    if (x == board.length - 1){
+			board[x][col] = "Q";
+			System.out.println(this);
+			return true;
+		    }else if (solve(x + 1)){
 			return true;
 		    }else{
 			board[x][col] = null;
 		    }
-		}	
+		}
 	    }
 	}
 	return false;
