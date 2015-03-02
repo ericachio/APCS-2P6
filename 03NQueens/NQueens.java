@@ -103,7 +103,7 @@ public class NQueens{
 		    //System.out.println(x);
 		    if (x == board.length - 1){
 			board[x][col] = "Q";
-			System.out.println(this);
+			//System.out.println(this);
 			return true;
 		    }else if (solve(x + 1)){
 			return true;
