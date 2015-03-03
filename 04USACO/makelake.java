@@ -1,4 +1,14 @@
+import java.util.Scanner;
+import java.util.File;
+import java.util.FileNotFoundException;
 public class makelake{
+
+    public makelake(String filename)throws FileNotFoundException{
+	Scanner in = new Scanner(new File(filename));
+	while(in.hasNextLine()){
+	    String line = in.nextLine();
+	}
+    }
     
     public static int lake(int[] one, int[][] two, int[] three, int[] four){
 	two = directions(two, three);
