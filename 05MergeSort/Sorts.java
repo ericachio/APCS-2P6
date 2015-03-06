@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 public class Sorts{
 
     public static void mergesort(int[] a){
@@ -46,6 +47,15 @@ public class Sorts{
 	    ans += a[i] + " ";
 	}
 	return ans;
+    }
+
+    public static int[] makeRandomArray(int size, int range){
+	int[] random = new int[size];
+	Random rand = new Random();
+	for (int i = 0; i < size; i++){
+	    random[i] = rand.nextInt(range);
+	}
+	return random;
     }
 
     public static void main(String[]args){

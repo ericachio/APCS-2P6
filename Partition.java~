@@ -1,0 +1,23 @@
+import java.util.Random;
+
+public class Partition{
+
+    public static void partition(int[] array, int si, int ei){
+	Random rand = new Random();
+	int i = rand.nextInt(ei) + si;
+	int pivot = array[i];
+	int[] sub = new int[array.length];
+	int subi = 0;
+	int sube = sub.length - 1;
+	for (int j = si; j < ei; j++){
+	    if (array[j] < pivot){
+		sub[subi] = array[j];
+		subi++;
+	    }else{
+		sub[sube] = array[j];
+		sube--;
+	    }
+	}
+    }
+    
+}
