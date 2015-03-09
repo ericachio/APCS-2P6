@@ -20,7 +20,7 @@ public class Partition{
     public static int partition(int[] array, int si, int ei){
 	Random rand = new Random();
 	int i = rand.nextInt(ei) + si;
-	System.out.println("i" + i);
+	//System.out.println("i" + i);
 	int pivot = array[i];
 	int[] sub = new int[array.length];
 	int subi = si;
@@ -34,7 +34,7 @@ public class Partition{
 		sube--;
 	    }
 	}
-	System.out.println(pivot);
+	//System.out.println(pivot);
 	sub[subi] = pivot;
 	for (int l = 0; l < ei; l++){
 	array[l] = sub[l];
@@ -68,8 +68,8 @@ public class Partition{
     public static void main(String[]args){
 	int[] yo = randArray(10);
 	System.out.println(toString(yo));
-	System.out.println(quicksort(yo, 5));
-	//partition(yo, 0, 5);
+	//System.out.println(quicksort(yo, 5));
+	partition(yo, 0, 5);
 	System.out.println(toString(yo));
     }
 }
