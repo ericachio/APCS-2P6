@@ -1,14 +1,30 @@
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Partition{
 
-    public static void partition(int[] array, int si, int ei){
+    public static int quicksort(int[] array, int num){
+	int start = 0;
+	int end = array.length;
+	partition(array, start, end);
+	if (partition(array, start, end) > num - 1){
+	    quicksort(array, num);
+	}else if (partition(array, start, end) < num){
+	    quicksort(array, num);
+	}else{
+	    return array[num];
+	}
+	return array[num] + 0;
+    }
+
+    public static int partition(int[] array, int si, int ei){
 	Random rand = new Random();
 	int i = rand.nextInt(ei) + si;
+	System.out.println("i" + i);
 	int pivot = array[i];
 	int[] sub = new int[array.length];
-	int subi = 0;
-	int sube = sub.length - 1;
+	int subi = si;
+	int sube = ei - 1;
 	for (int j = si; j < ei; j++){
 	    if (array[j] < pivot){
 		sub[subi] = array[j];
@@ -18,16 +34,18 @@ public class Partition{
 		sube--;
 	    }
 	}
+	System.out.println(pivot);
 	sub[subi] = pivot;
-	for (int l = 0; l < array.length; l++){
-	    array[l] = sub[l];
+	for (int l = 0; l < ei; l++){
+	array[l] = sub[l];
 	}
+	return subi;
     }
 
     public static int[] randArray(int size){
 	int[] intial = new int[size];
 	for (int i = 0; i < intial.length; i++){
-	    intial[i] = i;
+ 	    intial[i] = i;
 	}
 	Random rand = new Random();
 	for (int j = intial.length - 1; j > 0; j--){
@@ -50,7 +68,8 @@ public class Partition{
     public static void main(String[]args){
 	int[] yo = randArray(10);
 	System.out.println(toString(yo));
-	partition(yo, 0, 10);
+	System.out.println(quicksort(yo, 5));
+	//partition(yo, 0, 5);
 	System.out.println(toString(yo));
     }
 }
