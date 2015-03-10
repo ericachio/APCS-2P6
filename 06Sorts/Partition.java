@@ -22,7 +22,8 @@ public class Partition{
     }
 
     public static int partition(int[] array, int si, int ei){
-	int pivot = array[si];
+	Random rand = new Random();
+	int pivot = array[(ei + si) / 2];
 	int left = si;
 	int right = ei - 1;
 	while (left < right){
