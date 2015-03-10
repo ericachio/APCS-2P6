@@ -4,42 +4,47 @@ import java.util.ArrayList;
 public class Partition{
 
     public static int quicksort(int[] array, int num){
-	int start = 0;
-	int end = array.length;
-	partition(array, start, end);
-	if (partition(array, start, end) > num - 1){
-	    quicksort(array, num);
-	}else if (partition(array, start, end) < num){
-	    quicksort(array, num);
-	}else{
-	    return array[num];
+	int first = 0;
+	int last = array.length;
+	int k = num - 1;
+	int pivot;
+	while (first <= last){
+	    pivot = partition(array, first, last);
+	    if (pivot == k){
+		return array[pivot];
+	    }else if (pivot > k){
+		last = pivot - 1;
+	    }else {
+		first = pivot + 1;
+	    }
 	}
-	return array[num] + 0;
+	return 0;
     }
 
     public static int partition(int[] array, int si, int ei){
-	Random rand = new Random();
-	int i = rand.nextInt(ei) + si;
-	//System.out.println("i" + i);
-	int pivot = array[i];
-	int[] sub = new int[array.length];
-	int subi = si;
-	int sube = ei - 1;
-	for (int j = si; j < ei; j++){
-	    if (array[j] < pivot){
-		sub[subi] = array[j];
-		subi++;
-	    }else if (array[j] > pivot){
-		sub[sube] = array[j];
-		sube--;
+	int pivot = array[si];
+	int left = si;
+	int right = ei - 1;
+	while (left < right){
+	    while (array[left] <= pivot && left < right){
+		left++;
+	    }
+	    while (array[right] > pivot){
+		right--;
+	    }
+	    if (left < right){
+		swap(array, left, right);
 	    }
 	}
 	//System.out.println(pivot);
-	sub[subi] = pivot;
-	for (int l = 0; l < ei; l++){
-	array[l] = sub[l];
-	}
-	return subi;
+	swap(array, si, right);
+	return right;
+    }
+
+    public static void swap(int[] array, int x, int y){
+	int temp = array[x];
+	array[x] = array[y];
+	array[y] = temp;
     }
 
     public static int[] randArray(int size){
@@ -68,8 +73,8 @@ public class Partition{
     public static void main(String[]args){
 	int[] yo = randArray(10);
 	System.out.println(toString(yo));
-	//System.out.println(quicksort(yo, 5));
-	partition(yo, 0, 5);
+	System.out.println(quicksort(yo, 5));
+	//System.out.println(partition(yo, 0, 9));
 	System.out.println(toString(yo));
     }
 }
