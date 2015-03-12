@@ -1,0 +1,12 @@
+public class LinkedList{
+
+    private LNode next;
+    private int data;
+
+    public String toString(){
+
+    }
+    public void add(int value){
+	
+    }
+}
