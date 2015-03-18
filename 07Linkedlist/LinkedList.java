@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LinkedList<T>{
+public class LinkedList<T> implements Iterable<T>{
 
     private LNode<T> head;
     private LNode<T> tail;
@@ -8,6 +8,20 @@ public class LinkedList<T>{
 
     public String name(){
 	return "chio.erica";
+    }
+
+    public LinkedList(){
+	this(null);
+    }
+
+    public LinkedList(LNode<T> start){
+	head = start;
+	tail = head;
+	size = 0;
+    }
+
+    public Iterator<T> iterator(){
+	return new LinkedListIterator<T>(head);
     }
     
     public String toString(){
@@ -99,4 +113,25 @@ public class LinkedList<T>{
 	head = new LNode<T>();
 	tail = head;
     }
+
+    
+    public class LinkedListIterator<T> implements Iterator<T>{
+
+	private LNode<T> head;
+	
+	public LinkedListIterator(LNode<T> info){
+	    head = info;
+	}
+
+	
+	public boolean hasNext(){
+	    return true;
+	}
+	
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+       
+    }
+    
 }
