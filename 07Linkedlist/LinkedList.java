@@ -117,15 +117,24 @@ public class LinkedList<T> implements Iterable<T>{
     
     public class LinkedListIterator<T> implements Iterator<T>{
 
-	private LNode<T> head;
+	private LNode<T> current;
 	
 	public LinkedListIterator(LNode<T> info){
-	    head = info;
+	    current = info;
 	}
 
 	
 	public boolean hasNext(){
-	    return true;
+	    return current! = null;
+	}
+
+	public T next(){
+	    if(hasNext()){
+		T data = current.getData();
+		current = current.getNext();
+		return data;
+	    }
+	    throw new NoSuchElementException();
 	}
 	
 	public void remove(){
