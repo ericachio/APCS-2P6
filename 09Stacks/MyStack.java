@@ -61,19 +61,4 @@ public class MyStack<T>{
 	}
     }
     
-
-    public static void main(String[]args){
-	MyStack<Integer> a = new MyStack<Integer>();
-	System.out.println(a.empty());
-	a.push(4);
-	System.out.println(a.empty());
-	System.out.println(a);
-	for(int i = 0; i < 10; i++){
-	    a.push(i);
-	}
-	System.out.println(a);
-	a.pop();
-	System.out.println(a);
-	System.out.println(a.peek());
-    }
 }
