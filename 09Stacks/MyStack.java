@@ -2,10 +2,20 @@ import java.util.*;
 
 public class MyStack<T>{
 
-    private LinkedList<T> list;
+    private LNode<T> stack;
 
     public T push(T item){
-
+	LNode<T> now = stack;
+	if (stack.getValue() == null){
+	    stack = new LNode<T>(item);
+	    return item;
+	}else{
+	    while(now.getNext() != null){
+		now = now.getNext();
+	    }
+	    now.setNext(new LNode<T>(item));
+	    return item;
+	}
     }
 
     public T pop(){
@@ -17,6 +27,6 @@ public class MyStack<T>{
     }
 
     public boolean empty(){
-
+	return stack.getValue() == null;
     }
 }
