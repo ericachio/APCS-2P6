@@ -22,15 +22,25 @@ public class MyStack<T>{
 	}
     }
 
-    /*
+    
     public T pop(){
-	
+	LNode<T> now = stack;
+	while(now.getNext().getNext() != null){
+	    now = now.getNext();
+	}
+	T ans = now.getNext().getData();
+	now.setNext(null);
+	return ans;
     }
-
+    
     public T peek(){
-       
+	LNode<T> now = stack;
+	while(now.getNext() != null){
+	    now = now.getNext();
+	}
+	return now.getData();
     }
-    */
+    
 
     public boolean empty(){
 	return stack.getData() == null;
@@ -57,9 +67,13 @@ public class MyStack<T>{
 	System.out.println(a.empty());
 	a.push(4);
 	System.out.println(a.empty());
-	System.out.println(a.toString());
+	System.out.println(a);
 	for(int i = 0; i < 10; i++){
 	    a.push(i);
 	}
+	System.out.println(a);
+	a.pop();
+	System.out.println(a);
+	System.out.println(a.peek());
     }
 }
