@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LinkedList<T> implements Iterable<T>{
+public class MyLinkedList<T> implements Iterable<T>{
 
     private LNode<T> head;
     private LNode<T> tail;
@@ -10,18 +10,18 @@ public class LinkedList<T> implements Iterable<T>{
 	return "chio.erica";
     }
 
-    public LinkedList(){
+    public MyLinkedList(){
 	this(null);
     }
 
-    public LinkedList(LNode<T> start){
+    public MyLinkedList(LNode<T> start){
 	head = start;
 	tail = head;
 	size = 0;
     }
 
     public Iterator<T> iterator(){
-	return new LinkedListIterator<T>(head);
+	return new MyLinkedListIterator<T>(head);
     }
     
     public String toString(){
@@ -115,11 +115,11 @@ public class LinkedList<T> implements Iterable<T>{
     }
 
     
-    public class LinkedListIterator<T> implements Iterator<T>{
+    public class MyLinkedListIterator<T> implements Iterator<T>{
 
 	private LNode<T> current;
 	
-	public LinkedListIterator(LNode<T> info){
+	public MyLinkedListIterator(LNode<T> info){
 	    current = info;
 	}
 
