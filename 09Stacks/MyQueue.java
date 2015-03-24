@@ -3,20 +3,18 @@ import java.util.*;
 public class MyQueue<T>{
 
     private MyLinkedList<T> queue;
-    
+
+
+    public MyQueue(){
+	queue = new MyLinkedList<T>();
+    }
     
     public T enqueue(T item){
-	return item;
+	queue.add(item);
+	return true;
     }
 
     public T dequeue(){
-	MyLinkedList<T> now = queue;
-	if (queue.getData() != null){
-	    now = queue.getNext();
-	    
-	}
-	T ans = now.getData();
-	now.setData(null);
-	return ans;
+	return queue.remove(0);
     }
 }
