@@ -9,12 +9,12 @@ public class MyQueue<T>{
 	queue = new MyLinkedList<T>();
     }
     
-    public T enqueue(T item){
+    public boolean enqueue(T item){
 	queue.add(item);
 	return true;
     }
 
-    public T dequeue(){
-	return queue.remove(0);
+    public boolean dequeue(){
+	return queue.remove(0); 
     }
 }
