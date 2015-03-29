@@ -12,9 +12,27 @@ public class MyDeque<T>{
 	head = 1;
 	tail = 0;
     }
+
+    public void resize(){
+	if (size = list.length){
+	    Object[] better = new Object[size * 2];
+	    for (int i = 0; i < size; i++){
+		better[i] = list[(head + 1) % size];
+	    }
+	    list = better;
+	    head = 0;
+	    tail = size - 1;
+	}
+    }
     
     public void addFirst(T value){
-	
+	resize();
+	head--;
+	if (head < 0){
+	    head += list.length;
+	}
+	list[head] = value;
+	size++;
     }
     public void addLast(T value){
 
