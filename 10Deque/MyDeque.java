@@ -53,6 +53,16 @@ public class MyDeque<T>{
 	size--;
 	return ans;
     }
+    public T removeLast(){
+	T ans = (T) list[tail];
+	list[tail] = null;
+	tail--;
+	if (tail < 0){
+	    tail += list.length;
+	}
+	size--;
+	return ans;
+    }
     public T getFirst(){
 	return (T) list[head];
     }
@@ -67,6 +77,8 @@ public class MyDeque<T>{
 	System.out.println(a.getFirst());
 	a.addFirst(new Integer(5));
 	System.out.println(a.getFirst());
+	System.out.println(a.getLast());
+	a.addLast(new Integer(4));
 	System.out.println(a.getLast());
     }
 }
