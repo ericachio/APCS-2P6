@@ -46,6 +46,7 @@ public class Maze{
     }   
 
     public boolean solveBFS(){
+	
 	return false;
     }
     
