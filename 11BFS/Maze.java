@@ -69,6 +69,18 @@ public class Maze{
 	}
     }   
 
+    public Coordinates findS(){
+	Coordinates s;
+	for (int i = 0; i < maze.length; i++){
+	    for (int j = 0; j < maze[0].length; j++){
+		if (maze[i][j] == 'S'){
+		    s = new Coordinates(i, j);
+		}
+	    }
+	}
+	return s;
+    }
+    
     public boolean solveBFS(){
 	
 	return false;
