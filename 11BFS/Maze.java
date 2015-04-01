@@ -30,8 +30,8 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
-    private MyDeque<Integer> queue;
-    private MyStack<Integer> stack;
+    //private MyDeque<Integer> queue;
+    //private MyStack<Integer> stack;
 
     public Maze(String filename){
 	startx = -1;
@@ -69,20 +69,78 @@ public class Maze{
 	}
     }   
 
+    private String go(int x,int y){
+	return ("["+x+";"+y+"H");
+    }
+    
+    private String clear(){
+	return  "[2J";
+    }
+    
+    private String hide(){
+	return  "[?25l";
+    }
+    
+    private String show(){
+	return  "[?25h";
+    }
+    private String invert(){
+	return  "[37";
+    }
+    
+    public void clearTerminal(){
+	System.out.println(clear());
+    }
+    
+    public void wait(int millis){
+	try {
+	    Thread.sleep(millis);
+	}
+	catch (InterruptedException e) {
+	}
+    }
+    
+    public String toString(){
+	String ans = ""+maxx+","+maxy+"\n";
+	for(int i=0;i<maxx*maxy;i++){
+	    if(i%maxx ==0 && i!=0){
+		ans+="\n";
+	    }
+	    ans += maze[i%maxx][i/maxx];
+	}
+	return hide()+invert()+go(0,0)+ans+"\n"+show();
+    }
+    
+    
     public Coordinates findS(){
 	Coordinates s;
 	for (int i = 0; i < maze.length; i++){
 	    for (int j = 0; j < maze[0].length; j++){
 		if (maze[i][j] == 'S'){
 		    s = new Coordinates(i, j);
+		    return s;
 		}
 	    }
 	}
-	return s;
+	return s = new Coordinates(0,0);
+    }
+
+    private class Frontier{
+
+	public Frontier(int mode){
+
+	}
+	public void add(){
+
+	}
+	public void remove(){
+
+	}
+	
     }
     
-    public boolean solveBFS(){
-	
+    public boolean solve(boolean animate, int mode){
+	Frontier nexts = new Frontier(mode);
 	return false;
     }
     
