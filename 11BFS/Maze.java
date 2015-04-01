@@ -3,6 +3,30 @@ import java.io.*;
 
 public class Maze{
 
+    
+    private class Coordinates{
+	
+	private int row, col;
+	
+	public Coordinates(int r, int c){
+	    row = r;
+	    col = c;
+	}
+	
+	public int getR(){
+	    return row;
+	}
+	
+	public int getC(){
+	    return col;
+	}
+
+	public String toString(){
+	return "(" + row + ", " + col + ")"; 
+	}
+    }
+
+    
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
