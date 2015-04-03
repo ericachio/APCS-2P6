@@ -128,10 +128,14 @@ public class Maze{
     private class Frontier{
 
 	public Frontier(int mode){
-
+	    if (mode == 0){
+		solveBFS();
+	    }else if (mode == 1){
+		solveDFS();
+	    }
 	}
 	public void add(){
-
+	    
 	}
 	public void remove(){
 
@@ -143,5 +147,12 @@ public class Maze{
 	Frontier nexts = new Frontier(mode);
 	return false;
     }
-    
+
+    public boolean solveBFS(){
+	return false;
+    }
+
+    public boolean solveDFS(){
+	return false;
+    }
 }
