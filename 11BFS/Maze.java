@@ -159,7 +159,7 @@ public class Maze{
 	return toString();
     }
     
-    public boolean solve(boolean animate, int mode){
+    public boolean solve(boolean animate){
 	Coordinates start = new Coordinates(0,0);
 	s = new LNode<Coordinates>(start);
 	for (int i = 0; i < maze.length; i++){
@@ -199,11 +199,30 @@ public class Maze{
 	return false;
     }
 
+    public boolean solveDFS(boolean animate){
+	deck = new Frontier<Coordinates>(true);
+	return solve(animate);
+    }
+
+    public boolean solveBFS(boolean animate){
+	deck = new Frontier<Coordinates>(false);
+	return solve(animate);
+    }
+
     public boolean solveBFS(){
-	return false;
+	return solveBFS(false);
     }
 
     public boolean solveDFS(){
-	return false;
+	return solveDFS(false);
+    }
+
+    public int[] solutionCoordinates(){
+	System.out.println(s);
+	while(s.getNext() != null){
+	    System.out.println(s.getData());
+	    s = s.getNext();
+	}
+	return new int[0];
     }
 }
