@@ -6,6 +6,10 @@ public class MyDeque<T>{
     public int head;
     public int tail;
     public int size;
+
+    public int size(){
+	return size;
+    }
     
     public MyDeque(){
 	list = new Object[10];

@@ -16,6 +16,14 @@ public class Maze{
 	public int getR(){
 	    return row;
 	}
+
+	public void setR(int r){
+	    row = r;
+	}
+
+	public void setC(int c){
+	    col = c;
+	}
 	
 	public int getC(){
 	    return col;
@@ -30,8 +38,13 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
-    //private MyDeque<Integer> queue;
-    //private MyStack<Integer> stack;
+    private LNode<Coordinates> s;
+    private Frontier<Coordinates> deck;
+
+    private static final String clear =  "\033[2J";
+    private static final String hide =  "\033[?25l";
+    private static final String show =  "\033[?25h";	
+
 
     public Maze(String filename){
 	startx = -1;
@@ -111,40 +124,78 @@ public class Maze{
 	return hide()+invert()+go(0,0)+ans+"\n"+show();
     }
     
-    
-    public Coordinates findS(){
-	Coordinates s;
-	for (int i = 0; i < maze.length; i++){
-	    for (int j = 0; j < maze[0].length; j++){
-		if (maze[i][j] == 'S'){
-		    s = new Coordinates(i, j);
-		    return s;
-		}
+    private class Frontier<T>{
+	private MyDeque<T> deque = new MyDeque<T>();
+	private boolean s;
+
+	public Frontier (boolean stack){
+	    s = stack;
+	}
+
+	public void add(T value){
+	    deque.addFirst(value);
+	}
+	public T remove(){
+	    if (s){
+		return deque.removeFirst();
+	    }else{
+		return deque.removeLast();
 	    }
 	}
-	return s = new Coordinates(0,0);
+
+	public String toString(){
+	    return deque.toString();
+	}
+
+	public int size(){
+	    return deque.size();
+	}
     }
 
-    private class Frontier{
-
-	public Frontier(int mode){
-	    if (mode == 0){
-		solveBFS();
-	    }else if (mode == 1){
-		solveDFS();
-	    }
+    public String toString(boolean animate){
+	if (animate){
+	    return hide+go(0,0)+toString()+'\n'+show;
 	}
-	public void add(){
-	    
-	}
-	public void remove(){
-
-	}
-	
+	return toString();
     }
     
     public boolean solve(boolean animate, int mode){
-	Frontier nexts = new Frontier(mode);
+	Coordinates start = new Coordinates(0,0);
+	s = new LNode<Coordinates>(start);
+	for (int i = 0; i < maze.length; i++){
+	    for (int l = 0; l < maze[0].length; l++){
+		if (maze[i][l] == 'S'){
+		    start.setR(l);
+		    start.setC(i);
+		}
+	    }
+	}
+	deck.add(start);
+	LNode<Coordinates> a = new LNode<Coordinates>();
+	Coordinates temp = new Coordinates(0,0);
+	while (deck.size() > 0){
+	    if (animate){
+		System.out.println(toString(true));
+		wait(1);
+	    }
+	    temp = deck.remove();
+	    a.setNext(new LNode<Coordinates>(temp));
+	    if (maze[temp.getC()][temp.getR()] == ' ' ||
+		maze[temp.getC()][temp.getR()] == 'S'){
+		maze[temp.getC()][temp.getR()] = '@';
+		deck.add(new Coordinates(temp.getR(), temp.getC() + 1));
+		deck.add(new Coordinates(temp.getR(), temp.getC() - 1));
+		deck.add(new Coordinates(temp.getR() + 1, temp.getC()));
+		deck.add(new Coordinates(temp.getR() - 1, temp.getC()));
+	    }else if (maze[temp.getC()][temp.getR()] == 'E'){
+		s = a;
+		return true;
+	    }else if (maze[temp.getC()][temp.getR()] == '@' ||
+		      maze[temp.getC()][temp.getR()] == '#'){
+		a = a.getNext();
+	    }
+	}
+	s = a;
 	return false;
     }
 
