@@ -73,6 +73,11 @@ public class MyDeque<T>{
     public T getLast(){
 	return (T) list[tail];
     }
+
+    public void add(Object stuff, int priority){
+
+    }
+    
     public static void main(String[]args){
 	MyDeque<Integer> a = new MyDeque<Integer>();
 	a.addFirst(new Integer(10));
