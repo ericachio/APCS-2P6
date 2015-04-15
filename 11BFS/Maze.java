@@ -3,6 +3,7 @@ import java.io.*;
 
 public class Maze{
 
+    //solveBFS() solveDFS() solveBest() solveAStar()
     
     private class Coordinates{
 	

@@ -6,6 +6,7 @@ public class MyDeque<T>{
     public int head;
     public int tail;
     public int size;
+    public int[] pri;
 
     public int size(){
 	return size;
@@ -74,8 +75,22 @@ public class MyDeque<T>{
 	return (T) list[tail];
     }
 
-    public void add(Object stuff, int priority){
+    public void add(T stuff, int priority){
+	addFirst(stuff);
+	resizep();
+	
+    }
 
+    public void resizep(){
+	if (size == pri.length){
+	    int[] temp = new int[size * 2];
+	    for (int i = 0; i < size; i++){
+		temp[i] = pri[(head + 1) % size];
+	    }
+	    pri = temp;
+	    head = 0;
+	    tail = size - 1;
+	}
     }
     
     public static void main(String[]args){
