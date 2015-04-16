@@ -75,10 +75,16 @@ public class MyDeque<T>{
 	return (T) list[tail];
     }
 
+    public boolean isEmpty(){
+	return size == 0;
+    }
+    
     public void add(T stuff, int priority){
-	addFirst(stuff);
-	resizep();
-	
+	if(isEmpty()){
+	    list[0] = stuff;
+	    pri[0] = priority;
+	    return;
+	}
     }
 
     public void resizep(){
