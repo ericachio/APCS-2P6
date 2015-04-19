@@ -115,14 +115,14 @@ public class Maze{
     }
     
     public String toString(){
-	String ans = ""+maxx+","+maxy+"\n";
-	for(int i=0;i<maxx*maxy;i++){
-	    if(i%maxx ==0 && i!=0){
-		ans+="\n";
+	String ans = "";
+	for (int i = 0; i < maxx * maxy; i++){
+	    if (i%maxx == 0 && i != 0){
+		ans += "\n";
 	    }
 	    ans += maze[i%maxx][i/maxx];
 	}
-	return hide()+invert()+go(0,0)+ans+"\n"+show();
+	return ans;
     }
     
     private class Frontier<T>{

@@ -3,13 +3,18 @@ import java.util.*;
 public class Driver{
 
     public static void main(String[]args){
-	Maze f;
+	Maze a;
 	if(args.length < 1){
-	    f = new Maze("data1.dat");
+	    a = new Maze("data1.dat");
 	}else{
-	    f = new Maze(args[0]);
+	    a = new Maze(args[0]);
 	}
-
-
+	a.clearTerminal();
+	if (args.length > 1){
+	    a.solveDFS(true);
+	}else{
+	    a.solveBFS(true);
+	}
+	System.out.println(Arrays.toString(a.solutionCoordinates()));
     }
 }
