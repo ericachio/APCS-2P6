@@ -210,6 +210,24 @@ public class Maze{
 	return solve(animate);
     }
 
+    public boolean solveBest(boolean animate){
+	deck = new Frontier<Coordinates>;
+	return solve(animate);
+    }
+
+    public boolean solveAStar(boolean animate){
+	deck = new Frontier<Coordinates>;
+	return solve(anmate);
+    }
+
+    public boolean solveBest(){
+	return solveBest(false);
+    }
+
+    public boolean solveAStar(){
+	return solveAStar(false);
+    }
+
     public boolean solveBFS(){
 	return solveBFS(false);
     }
@@ -218,6 +236,8 @@ public class Maze{
 	return solveDFS(false);
     }
 
+    
+    
     public int[] solutionCoordinates(){
 	System.out.println(s);
 	while(s.getNext() != null){
