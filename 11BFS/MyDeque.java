@@ -158,6 +158,6 @@ public class MyDeque<T>{
 	b.add(4,2);
 	b.add(1,9);
 	System.out.println(b.toString());
-	System.out.println(b.pri);
+	//System.out.println(b.pri);
     }
 }
