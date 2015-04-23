@@ -1,0 +1,12 @@
+public class TreeNode<T>{
+
+    private T data;
+    private T right, left;
+    private TreeNode<T> next;
+    
+
+    public void getData(){
+	return data;
+    }
+    
+}
