@@ -1,41 +1,41 @@
-public class TreeNode<T>{
+public class TreeNode<E>{
 
-    private T data;
-    private T right, left;
-    private TreeNode<T> next;
+    private E data;
+    private E right, left;
+    private TreeNode<E> next;
     
 
-    public TreeNode(T stuff){
+    public TreeNode(E stuff){
 	data = stuff;
     }
 
-    public TreeNode(T stuff, TreeNode<T> node){
+    public TreeNode(E stuff, TreeNode<E> node){
 	data = stuff;
 	next = node;
     }
     
-    public T getData(){
+    public E getData(){
 	return data;
     }
-    public void setData(T value){
+    public void setData(E value){
 	data = value;
     }
-    public TreeNode<T> getNext(){
+    public TreeNode<E> getNext(){
 	return next;
     }
-    public void setNext(TreeNode<T> node){
+    public void setNext(TreeNode<E> node){
 	next = node;
     }
-    public T getRight(){
+    public E getRight(){
 	return right;
     }
-    public void setRight(T value){
+    public void setRight(E value){
 	right = value;
     }
-    public T getLeft(){
+    public E getLeft(){
 	return left;
     }
-    public void setLeft(T value){
+    public void setLeft(E value){
 	left = value;
     }
 }
