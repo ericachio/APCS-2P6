@@ -8,10 +8,14 @@ public class Maze{
     private class Coordinates{
 	
 	private int row, col;
+	private Coordinates next;
+	private int step;
 	
-	public Coordinates(int r, int c){
+	public Coordinates(int r, int c, Coordinates nexts, int steps){
 	    row = r;
 	    col = c;
+	    step = steps;
+	    next = nexts;
 	}
 	
 	public int getR(){
@@ -25,11 +29,27 @@ public class Maze{
 	public void setC(int c){
 	    col = c;
 	}
+
+	public void setStep(int steps){
+	    step = steps;
+	}
+
+	public void setNext(Coordinates nexts){
+	    next = nexts;
+	}
 	
 	public int getC(){
 	    return col;
 	}
 
+	public int getStep(){
+	    return step;
+	}
+
+	public Coordinates getNext(){
+	    return next;
+	}
+	
 	public String toString(){
 	return "(" + row + ", " + col + ")"; 
 	}
@@ -161,7 +181,7 @@ public class Maze{
     }
     
     public boolean solve(boolean animate){
-	Coordinates start = new Coordinates(0,0);
+	Coordinates start = new Coordinates(0,0, null, 0);
 	s = new LNode<Coordinates>(start);
 	for (int i = 0; i < maze.length; i++){
 	    for (int l = 0; l < maze[0].length; l++){
@@ -173,7 +193,7 @@ public class Maze{
 	}
 	deck.add(start);
 	LNode<Coordinates> a = new LNode<Coordinates>();
-	Coordinates temp = new Coordinates(0,0);
+	Coordinates temp = new Coordinates(0,0, null, 0);
 	while (deck.size() > 0){
 	    if (animate){
 		System.out.println(toString(true));
@@ -184,10 +204,10 @@ public class Maze{
 	    if (maze[temp.getC()][temp.getR()] == ' ' ||
 		maze[temp.getC()][temp.getR()] == 'S'){
 		maze[temp.getC()][temp.getR()] = '@';
-		deck.add(new Coordinates(temp.getR(), temp.getC() + 1));
-		deck.add(new Coordinates(temp.getR(), temp.getC() - 1));
-		deck.add(new Coordinates(temp.getR() + 1, temp.getC()));
-		deck.add(new Coordinates(temp.getR() - 1, temp.getC()));
+		deck.add(new Coordinates(temp.getR(), temp.getC() + 1, temp, temp.getStep() + 1));
+		deck.add(new Coordinates(temp.getR(), temp.getC() - 1, temp, temp.getStep() + 1));
+		deck.add(new Coordinates(temp.getR() + 1, temp.getC(), temp, temp.getStep() + 1));
+		deck.add(new Coordinates(temp.getR() - 1, temp.getC(), temp, temp.getStep() + 1));
 	    }else if (maze[temp.getC()][temp.getR()] == 'E'){
 		s = a;
 		return true;
@@ -211,15 +231,16 @@ public class Maze{
     }
 
     public boolean solveBest(boolean animate){
-	deck = new Frontier<Coordinates>;
+	deck = new Frontier<Coordinates>(true);
 	return solve(animate);
     }
 
     public boolean solveAStar(boolean animate){
-	deck = new Frontier<Coordinates>;
-	return solve(anmate);
+	deck = new Frontier<Coordinates>(true);
+	return solve(animate);
     }
 
+    /*
     public boolean solveBest(){
 	return solveBest(false);
     }
@@ -227,6 +248,7 @@ public class Maze{
     public boolean solveAStar(){
 	return solveAStar(false);
     }
+    */
 
     public boolean solveBFS(){
 	return solveBFS(false);
