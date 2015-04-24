@@ -1,7 +1,7 @@
 public class TreeNode<E>{
 
     private E data;
-    private E right, left;
+    private TreeNode<E> right, left;
     private TreeNode<E> next;
     
 
@@ -26,16 +26,16 @@ public class TreeNode<E>{
     public void setNext(TreeNode<E> node){
 	next = node;
     }
-    public E getRight(){
+    public TreeNode<E> getRight(){
 	return right;
     }
-    public void setRight(E value){
+    public void setRight(TreeNode<E> value){
 	right = value;
     }
-    public E getLeft(){
+    public TreeNode<E> getLeft(){
 	return left;
     }
-    public void setLeft(E value){
+    public void setLeft(TreeNode<E> value){
 	left = value;
     }
 }
