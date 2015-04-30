@@ -71,6 +71,16 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
+	String ans = "";
+	if (curr == root){
+	    ans += curr.getData();
+	}else{
+	    ans += root.getData();
+	}
+	TreeNode<E> temp = root;
+	while(temp != curr){
+	    ans += temp.getRight();
+	}
     }
     
     
@@ -109,7 +119,18 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
-	return -1;
+	if (curr == null){
+	    return 0;
+	}else if (curr.getLeft() == null && curr.getRight() == null){
+	    return 1;
+	}else if (curr.getLeft() == null){
+	    return 1 + getHeight(curr.getRight());
+	}else if (curr.getRight() == null){
+	    return 1 + getHeight(curr.getLeft());
+	}else{
+	    return 1 +
+		Math.max(getHeight(curr.getRight()), getHeight(curr.getLeft()));
+	}
     }
     
     /*======== public String getLevel() ==========
