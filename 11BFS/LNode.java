@@ -3,6 +3,7 @@ public class LNode<T>{
     private T data;
     private LNode<T> next;
 
+
     public String name(){
 	return "chio.erica";
     }

@@ -1,0 +1,41 @@
+public class BSTreeNode<E>{
+
+    private E data;
+    private BSTreeNode<E> right, left;
+    private BSTreeNode<E> next;
+    
+
+    public BSTreeNode(E stuff){
+	data = stuff;
+    }
+
+    public BSTreeNode(E stuff, BSTreeNode<E> node){
+	data = stuff;
+	next = node;
+    }
+    
+    public E getData(){
+	return data;
+    }
+    public void setData(E value){
+	data = value;
+    }
+    public BSTreeNode<E> getNext(){
+	return next;
+    }
+    public void setNext(BSTreeNode<E> node){
+	next = node;
+    }
+    public BSTreeNode<E> getRight(){
+	return right;
+    }
+    public void setRight(BSTreeNode<E> value){
+	right = value;
+    }
+    public BSTreeNode<E> getLeft(){
+	return left;
+    }
+    public void setLeft(BSTreeNode<E> value){
+	left = value;
+    }
+}
