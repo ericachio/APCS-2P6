@@ -73,8 +73,13 @@ public class BSTree <T extends Comparable>{
 	if (curr.getData() == c){
 	    int side = rand.nextInt(2) + 1;
 	    if (side == 0){
+		//smallest of the right side
+		while (curr.getData != null){
+		    curr = curr.getRight;
+		}
 		curr.setData(curr.getLeft());
 	    }else if (side == 1){
+		//smallest of the left side
 		curr.setData(curr.getRight());
 	    }
 	    
@@ -109,6 +114,25 @@ public class BSTree <T extends Comparable>{
 	inOrderHelper( t.getRight() );
     }
 
+    public String toString() {
+	if (root == null)
+	    return "";
+	String result = "";
+	int height = getHeight();
+	int wordLength = maxLength();
+	// add the every level of the tree except the last one
+	for (int level = 1; level < height; level++){
+	    // remove extra spaces from the end of each level's 
+	    // String to prevent lines from getting unnecessarily 
+	    // long and add spaces to the front of each level's String
+	    // to keep everything centered
+	    result += spaces(wordLength * Math.pow(2, height - level) - wordLength) + getLevel(root, level, level, height, wordLength).replaceFirst("\\s+$", "") + "\n";
+	}
+	// now add the last level (level = height)
+	result += getLevel(root, height, height, height, wordLength).replaceFirst("\\s+$", "");
+	
+	return result;
+    }
    
     public static void main( String[] args ) {
 
