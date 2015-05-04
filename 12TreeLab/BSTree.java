@@ -141,6 +141,33 @@ public class BSTree <T extends Comparable>{
 	
 	return result;
     }
+
+    private String getLevel(BSTreeNode<T> curr, int currLevel, 
+			    int targetLevel, int height, int wordLength) {
+	if (currLevel == 1){
+	    return curr.toString() + 
+		spaces(wordLength - curr.toString().length()) +
+		spaces(wordLength * 
+		       Math.pow(2, height - targetLevel + 1) - 
+		       wordLength);
+	}
+	String result = "";
+	if (curr.getLeft() != null){
+	    result += getLevel(curr.getLeft(), currLevel - 1,
+			       targetLevel, height, wordLength);
+	}else{
+	    result += spaces(wordLength * 
+			     Math.pow(2, height - targetLevel + currLevel - 1));
+	}
+	if (curr.getRight() != null){
+	    result += getLevel(curr.getRight(), currLevel - 1, targetLevel, 
+			       height, wordLength);
+	}else{ 
+	    result += spaces(wordLength * 
+			     Math.pow(2, height - targetLevel + currLevel - 1));
+	}
+	return result;
+    }
    
     public static void main( String[] args ) {
 
