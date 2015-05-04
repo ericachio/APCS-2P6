@@ -113,6 +113,14 @@ public class BSTree <T extends Comparable>{
 	System.out.print( t.getData() + " ");
 	inOrderHelper( t.getRight() );
     }
+    
+    private String spaces(double n) {
+	// returns a String of n spaces
+	String result = "";
+	for (int i = 0; i < n; i++)
+	    result += " ";
+	return result;
+    }
 
     public String toString() {
 	if (root == null)
