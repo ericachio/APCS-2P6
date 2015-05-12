@@ -20,6 +20,10 @@ public class MyHeap{
 	    mode = min;
 	}
     }
+
+    public void add(int n){
+	
+    }
     
     public void resize(){
 	if(heap[0] == heap.length - 1){
