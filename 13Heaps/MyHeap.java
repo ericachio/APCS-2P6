@@ -8,7 +8,7 @@ public class MyHeap{
     private final int min = 1;
     
     public MyHeap(){
-	heap = int[2];
+	heap = int[10];
 	mode = max;
     }
 
@@ -18,6 +18,30 @@ public class MyHeap{
 	    mode = max;
 	}else{
 	    mode = min;
+	}
+    }
+
+    public boolean compare(int p, int c){
+	if(mode == max){
+	    return p < c;
+	}else if(mode == min){
+	    return p > c;
+	}
+    }
+
+    public void add(int n){
+	heap[heap[0]+1] = value;
+	heap[0] += 1;
+	addH(heap[0]);
+	resize();
+    }
+
+    public void addH(int index){
+	if (index != 1 && compare(heap[index/2], heap[index])){
+	    int temp = heap[index];
+	    heap[index] = heap[index/2];
+	    heap[index/2] = temp;
+	    addH(index/2);
 	}
     }
     
@@ -30,5 +54,20 @@ public class MyHeap{
 	heap = newheap;
 	}
     }
+
+    public String toString(){
+	String ans = "";
+	for (int i = 1; i <= heap[0]; i++){
+	    ans += heap[i] + " ";
+	}
+	return ans;
+    }
     
+    public static void main(String[] args){
+	MyHeap a = new MyHeap(true);
+	a.add(4);
+	a.add(3);
+
+	
+    }
 }
