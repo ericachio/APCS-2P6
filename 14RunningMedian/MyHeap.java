@@ -8,12 +8,12 @@ public class MyHeap{
     private final int min = 1;
     
     public MyHeap(){
-	heap = new int[10];
+	heap = int[10];
 	mode = max;
     }
 
     public MyHeap(boolean isMax){
-	heap = new int[2];
+	heap = int[2];
 	if (isMax){
 	    mode = max;
 	}else{
@@ -24,60 +24,25 @@ public class MyHeap{
     public boolean compare(int p, int c){
 	if(mode == max){
 	    return p < c;
-	}else{
+	}else if(mode == min){
 	    return p > c;
 	}
     }
 
     public void add(int n){
-	heap[heap[0] + 1] = n;
+	heap[heap[0]+1] = value;
 	heap[0] += 1;
 	addH(heap[0]);
 	resize();
     }
 
     public void addH(int index){
-	if (index != 1 && compare(heap[index / 2], heap[index])){
+	if (index != 1 && compare(heap[index/2], heap[index])){
 	    int temp = heap[index];
-	    heap[index] = heap[index / 2];
-	    heap[index / 2] = temp;
-	    addH(index / 2);
+	    heap[index] = heap[index/2];
+	    heap[index/2] = temp;
+	    addH(index/2);
 	}
-    }
-
-    public int remove(){
-	if (heap[0] == 0){
-	    throw new NoSuchElementException();
-	}
-	int data = heap[1];
-	heap[1] = heap[heap[0]];
-	heap[0] -= 1;
-	removeH(1);
-	return data;
-
-    }
-
-    public void removeH(int index){
-	if (index < heap[0] && (compare(heap[index], heap[index * 2]) ||
-				compare(heap[index], heap[index * 2 + 1]))){
-	    int temp = heap[index];
-	    if(compare(heap[index] * 2, heap[index] * 2 + 1)){
-		heap[index] = heap[index * 2 + 1];
-		heap[index * 2 + 1] = temp;
-		removeH(index * 2 + 1);
-	    }else{
-		heap[index] = heap[index * 2];
-		heap[index * 2 ] = temp;
-		removeH(index * 2);
-	    }
-	}
-    }
-
-    public int peek(){
-	if (heap[0] == 0){
-	    throw new NoSuchElementException();
-	}
-	return heap[1];
     }
     
     public void resize(){
@@ -103,8 +68,6 @@ public class MyHeap{
 	a.add(4);
 	a.add(3);
 
-	a.remove();
-
-	System.out.println(a);
+	
     }
 }
